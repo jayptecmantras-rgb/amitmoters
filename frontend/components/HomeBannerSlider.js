@@ -14,7 +14,7 @@ export default function HomeBannerSlider() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveIndex(index => (index + 1) % banners.length);
-    }, 2000);
+    }, 5000);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -24,15 +24,12 @@ export default function HomeBannerSlider() {
   return (
     <section className="home-slider" aria-label="Featured products">
       <div className="home-slider-image-wrap">
-        {banners.map((banner, index) => (
-          <img
-            className={`home-slider-image${index === activeIndex ? ' is-active' : ''}`}
-            src={banner.src}
-            alt={banner.alt}
-            key={banner.src}
-            aria-hidden={index !== activeIndex}
-          />
-        ))}
+        <img
+          className="home-slider-image"
+          src={banners[activeIndex].src}
+          alt={banners[activeIndex].alt}
+          key={banners[activeIndex].src}
+        />
       </div>
       <div className="home-slider-controls">
         <button type="button" aria-label="Previous banner" onClick={() => showBanner(activeIndex - 1)}>‹</button>
